@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://fkircbnyvfj8"]
+
+[ext_resource type="Script" uid="uid://bcwevltk0et6p" path="res://test screen.gd" id="1_k6a6t"]
+
+[node name="TestScreen" type="CanvasLayer" unique_id=52524677]
+script = ExtResource("1_k6a6t")
+
+[node name="Label" type="Label" parent="." unique_id=352207175]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -58.0
+offset_right = 58.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "num goes here"
+
+[node name="TextEdit" type="LineEdit" parent="." unique_id=1200839944]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -4.0
+offset_right = 8.0
+offset_bottom = 4.0
+grow_vertical = 2
+text = "0"
+
+[node name="TextEdit2" type="LineEdit" parent="." unique_id=2054904067]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -4.0
+offset_bottom = 4.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "0"
+
+[node name="OptionButton" type="OptionButton" parent="." unique_id=2075932363]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.5
+offset_top = -10.0
+offset_right = 22.5
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+allow_reselect = true
+item_count = 6
+popup/item_0/text = "+"
+popup/item_0/id = 0
+popup/item_1/text = "×"
+popup/item_1/id = 1
+popup/item_2/text = "/"
+popup/item_2/id = 2
+popup/item_3/text = "^"
+popup/item_3/id = 3
+popup/item_4/text = "log"
+popup/item_4/id = 4
+popup/item_5/text = "^^"
+popup/item_5/id = 5
+
+[connection signal="text_submitted" from="TextEdit" to="." method="_on_text_edit_text_submitted"]
+[connection signal="text_submitted" from="TextEdit2" to="." method="_on_text_edit_text_submitted"]
+[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]

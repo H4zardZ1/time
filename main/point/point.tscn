@@ -1,0 +1,185 @@
+[gd_scene format=3 uid="uid://bcyk8ep12bpxn"]
+
+[ext_resource type="Script" uid="uid://fjcm1odkggb4" path="res://main/point/point screen.gd" id="1_xl6lp"]
+[ext_resource type="Script" uid="uid://bm5yfc5hoijb8" path="res://theme/superscript.gd" id="2_144oj"]
+[ext_resource type="Script" uid="uid://beuhm6plqal1i" path="res://number/modifier node.gd" id="2_etm3o"]
+[ext_resource type="Script" uid="uid://cxhb7e0exhtic" path="res://number/buyable.gd" id="2_is46j"]
+[ext_resource type="Script" uid="uid://cgs23g8jtycrw" path="res://main/point/buyable button.gd" id="3_11r00"]
+[ext_resource type="Script" uid="uid://b311uh6mus4ve" path="res://main/point/ticks x.gd" id="3_tf1y7"]
+[ext_resource type="Script" uid="uid://bco803eh0lw65" path="res://main/point/delta const.gd" id="4_2f28v"]
+[ext_resource type="Script" uid="uid://cfp1xrbfvcu5s" path="res://number/number source.gd" id="5_l8qih"]
+[ext_resource type="Script" uid="uid://c6t4rf5rlbrto" path="res://main/point/clicks x.gd" id="9_2f28v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2f28v"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_k7r5h"]
+script = ExtResource("2_144oj")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_4pwuq"]
+script = ExtResource("2_144oj")
+metadata/_custom_type_script = "uid://bm5yfc5hoijb8"
+
+[sub_resource type="Resource" id="Resource_4pwuq"]
+script = ExtResource("5_l8qih")
+string_to_convert = "1"
+n_mag = 1.0
+_last_updated_is_string = false
+metadata/_custom_type_script = "uid://cfp1xrbfvcu5s"
+
+[sub_resource type="Resource" id="Resource_2f28v"]
+script = ExtResource("5_l8qih")
+string_to_convert = "10"
+n_mag = 10.0
+_last_updated_is_string = false
+metadata/_custom_type_script = "uid://cfp1xrbfvcu5s"
+
+[sub_resource type="Resource" id="Resource_r8hd5"]
+script = ExtResource("5_l8qih")
+string_to_convert = "1"
+n_mag = 1.0
+_last_updated_is_string = false
+metadata/_custom_type_script = "uid://cfp1xrbfvcu5s"
+
+[sub_resource type="Resource" id="Resource_ghlpe"]
+script = ExtResource("5_l8qih")
+string_to_convert = "10"
+n_mag = 10.0
+_last_updated_is_string = false
+metadata/_custom_type_script = "uid://cfp1xrbfvcu5s"
+
+[sub_resource type="Resource" id="Resource_2ielm"]
+script = ExtResource("5_l8qih")
+string_to_convert = "2"
+n_mag = 2.0
+_last_updated_is_string = false
+metadata/_custom_type_script = "uid://cfp1xrbfvcu5s"
+
+[sub_resource type="Resource" id="Resource_3q7il"]
+script = ExtResource("5_l8qih")
+string_to_convert = "10"
+n_mag = 10.0
+_last_updated_is_string = false
+metadata/_custom_type_script = "uid://cfp1xrbfvcu5s"
+
+[node name="PointPanel" type="Panel" unique_id=1298675542 node_paths=PackedStringArray("x_button", "const_button") groups=["Has_Persistent"]]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2f28v")
+script = ExtResource("1_xl6lp")
+x_button = NodePath("BuyGrid/XButton")
+const_button = NodePath("BuyGrid/ConstButton")
+
+[node name="Label" type="Label" parent="." unique_id=1954589968]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "You have 30303040 Points"
+
+[node name="DeltaLabel" type="RichTextLabel" parent="." unique_id=759589920]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.1
+anchor_right = 0.75
+anchor_bottom = 0.25
+offset_left = -0.5
+offset_right = 0.5
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[center]x[ssc]3[/ssc]+ x[ssc]2[/ssc]+ x + 66654
+x = 120340
+= ??? Points/Tick
+"
+custom_effects = [SubResource("RichTextEffect_k7r5h")]
+
+[node name="BuyGrid" type="GridContainer" parent="." unique_id=1608124100]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.4
+anchor_right = 0.5
+anchor_bottom = 0.4
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="ConstButton" type="Button" parent="BuyGrid" unique_id=711343008]
+layout_mode = 2
+text = "Constant"
+script = ExtResource("3_11r00")
+start_v = "Increase the constant by {bought} [Cost: {res} points]"
+
+[node name="XButton" type="Button" parent="BuyGrid" unique_id=1694893712]
+layout_mode = 2
+text = "X"
+script = ExtResource("3_11r00")
+start_v = "Increase X by {bought} [Cost: {res} of constant]"
+
+[node name="X2Button" type="Button" parent="BuyGrid" unique_id=1357014137]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+script = ExtResource("3_11r00")
+start_v = "Increase x**2 by {bought}
+[Cost: {res} of x]"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BuyGrid/X2Button" unique_id=1375733925]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 0
+offset_right = 30.0
+offset_bottom = 31.0
+mouse_filter = 2
+bbcode_enabled = true
+text = "X[ssc]2[/ssc]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_4pwuq")]
+
+[node name="DeltaConst" type="Node" parent="." unique_id=1952131771]
+script = ExtResource("4_2f28v")
+starting_starting_cost = SubResource("Resource_4pwuq")
+starting_scale = SubResource("Resource_2f28v")
+metadata/_custom_type_script = "uid://cxhb7e0exhtic"
+
+[node name="X" type="Node" parent="." unique_id=1056426275]
+script = ExtResource("2_is46j")
+scale_type = 1
+starting_starting_cost = SubResource("Resource_r8hd5")
+starting_scale = SubResource("Resource_ghlpe")
+metadata/_custom_type_script = "uid://cxhb7e0exhtic"
+
+[node name="XSquared" type="Node" parent="." unique_id=160350234]
+script = ExtResource("2_is46j")
+scale_type = 1
+starting_starting_cost = SubResource("Resource_2ielm")
+starting_scale = SubResource("Resource_3q7il")
+metadata/_custom_type_script = "uid://cxhb7e0exhtic"
+
+[node name="XModifiers" type="Node" parent="." unique_id=2011171545]
+script = ExtResource("2_etm3o")
+
+[node name="TicksX" type="Node" parent="XModifiers" unique_id=1490589728]
+script = ExtResource("3_tf1y7")
+
+[node name="ModifierNode" type="Node" parent="XModifiers" unique_id=1415180630]
+script = ExtResource("9_2f28v")
+metadata/_custom_type_script = "uid://beuhm6plqal1i"
+
+[connection signal="pressed" from="BuyGrid/ConstButton" to="DeltaConst" method="buy_bulk"]
+[connection signal="pressed" from="BuyGrid/XButton" to="X" method="buy_bulk"]
+[connection signal="pressed" from="BuyGrid/X2Button" to="XSquared" method="buy_bulk"]

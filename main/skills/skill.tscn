@@ -1,0 +1,135 @@
+[gd_scene format=3 uid="uid://ceqq1xjbu57d4"]
+
+[ext_resource type="Script" uid="uid://bajt2go0jabjr" path="res://main/skills/skill.gd" id="1_5wsfm"]
+[ext_resource type="Script" uid="uid://c872ph341367u" path="res://main/skills/s button.gd" id="2_pvyuf"]
+[ext_resource type="Script" uid="uid://1ylhsqjumbpi" path="res://common/mouse drag cam.gd" id="4_pvyuf"]
+[ext_resource type="Script" uid="uid://j58mstwgtf27" path="res://number/upgrade.gd" id="4_xtoft"]
+[ext_resource type="Script" uid="uid://cfp1xrbfvcu5s" path="res://number/number source.gd" id="5_pvyuf"]
+
+[sub_resource type="Resource" id="Resource_rhnbv"]
+script = ExtResource("5_pvyuf")
+string_to_convert = "1"
+n_mag = 1.0
+_last_updated_is_string = false
+metadata/_custom_type_script = "uid://cfp1xrbfvcu5s"
+
+[sub_resource type="Resource" id="Resource_ubl8x"]
+script = ExtResource("5_pvyuf")
+string_to_convert = "1"
+n_mag = 1.0
+_last_updated_is_string = false
+metadata/_custom_type_script = "uid://cfp1xrbfvcu5s"
+
+[sub_resource type="LabelSettings" id="LabelSettings_55320"]
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Skill" type="Control" unique_id=220862290 node_paths=PackedStringArray("upgrades_parent_node", "p_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5wsfm")
+upgrades_parent_node = NodePath("Upgrades")
+p_label = NodePath("Panel/Label")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=255667480]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=896673278]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="ButtonsTree" type="Node2D" parent="SubViewportContainer/SubViewport" unique_id=286159355]
+
+[node name="ClickX" type="Node2D" parent="SubViewportContainer/SubViewport/ButtonsTree" unique_id=552582177]
+position = Vector2(214, 0)
+
+[node name="Button" type="Button" parent="SubViewportContainer/SubViewport/ButtonsTree/ClickX" unique_id=1960285798 node_paths=PackedStringArray("associated_upgrade")]
+offset_right = 8.0
+offset_bottom = 8.0
+toggle_mode = true
+text = "Clicks -> X
+Cost: 1 Skill Point"
+script = ExtResource("2_pvyuf")
+associated_upgrade = NodePath("../../../../../Upgrades/ClickXU")
+
+[node name="TickX" type="Node2D" parent="SubViewportContainer/SubViewport/ButtonsTree" unique_id=101473924]
+position = Vector2(-282, 0)
+
+[node name="Button" type="Button" parent="SubViewportContainer/SubViewport/ButtonsTree/TickX" unique_id=1247501498 node_paths=PackedStringArray("associated_upgrade")]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Ticks -> X
+Cost: 1 Skill Point"
+script = ExtResource("2_pvyuf")
+associated_upgrade = NodePath("../../../../../Upgrades/TickXU")
+
+[node name="ButtonsCamera" type="Camera2D" parent="SubViewportContainer/SubViewport" unique_id=295718167]
+script = ExtResource("4_pvyuf")
+
+[node name="SkillGain" type="Button" parent="." unique_id=1786387567]
+layout_mode = 1
+anchors_preset = -1
+offset_top = 31.0
+offset_right = 104.0
+offset_bottom = 31.0
+text = "Reset Points"
+
+[node name="Upgrades" type="Node" parent="." unique_id=1327454437]
+
+[node name="ClickXU" type="Node" parent="Upgrades" unique_id=966052904]
+script = ExtResource("4_xtoft")
+cost = SubResource("Resource_rhnbv")
+can_buy = true
+metadata/_custom_type_script = "uid://j58mstwgtf27"
+
+[node name="TickXU" type="Node" parent="Upgrades" unique_id=40742841]
+script = ExtResource("4_xtoft")
+cost = SubResource("Resource_ubl8x")
+can_buy = true
+metadata/_custom_type_script = "uid://j58mstwgtf27"
+
+[node name="Panel" type="Panel" parent="." unique_id=1964694337]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 28.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Panel" unique_id=532784758]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -42.0
+offset_right = 42.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "You have 1.0 skill points"
+label_settings = SubResource("LabelSettings_55320")
+
+[node name="Button" type="Button" parent="." unique_id=1654529486]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+offset_right = 8.0
+grow_vertical = 0
+text = "Center Camera"
+
+[connection signal="pressed" from="SubViewportContainer/SubViewport/ButtonsTree/ClickX/Button" to="Upgrades/ClickXU" method="buy_upgrade"]
+[connection signal="pressed" from="SubViewportContainer/SubViewport/ButtonsTree/TickX/Button" to="Upgrades/TickXU" method="buy_upgrade"]
+[connection signal="pressed" from="SkillGain" to="." method="reset_point"]
+[connection signal="pressed" from="Button" to="SubViewportContainer/SubViewport/ButtonsCamera" method="reset_position"]

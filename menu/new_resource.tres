@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="FormulaResource" load_steps=2 format=3 uid="uid://yhda3h3p7rs2"]
+
+[ext_resource type="Script" uid="uid://dpv6bspwiow0y" path="res://number/formula resource.gd" id="1_ggi4v"]
+
+[resource]
+script = ExtResource("1_ggi4v")
+content = [1, null]
+metadata/_custom_type_script = "uid://dpv6bspwiow0y"

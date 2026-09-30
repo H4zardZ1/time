@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://b0tc411yanwfm"]
+
+[ext_resource type="PackedScene" uid="uid://bcyk8ep12bpxn" path="res://main/point/point.tscn" id="1_euqtm"]
+[ext_resource type="Texture2D" uid="uid://wxdcd76ianbn" path="res://menu/dot.svg" id="1_nuisn"]
+[ext_resource type="ButtonGroup" uid="uid://qbtaudyexrhl" path="res://menu/layer tab buttons.tres" id="2_8mugl"]
+[ext_resource type="PackedScene" uid="uid://ceqq1xjbu57d4" path="res://main/skills/skill.tscn" id="2_nem1b"]
+[ext_resource type="Script" uid="uid://diqpddmtvki7v" path="res://menu/resource preview label.gd" id="3_nem1b"]
+[ext_resource type="Texture2D" uid="uid://dyxql1qay70aj" path="res://menu/psi(2).svg" id="6_mdgj4"]
+[ext_resource type="Script" uid="uid://fl082f8ebdm5" path="res://menu/layer tab container.gd" id="6_pm0ce"]
+[ext_resource type="StyleBox" uid="uid://c6nfx51hfsk0r" path="res://menu/score stylebox.tres" id="7_42h34"]
+[ext_resource type="Theme" uid="uid://bj2muldsbes26" path="res://menu/score theme/theme.tres" id="8_8mugl"]
+
+[node name="Normal" type="Control" unique_id=1791689426]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="BoxContainer" parent="." unique_id=257657236]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="GamePanel" type="Control" parent="HBoxContainer" unique_id=1911307907]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TabContainer" type="TabContainer" parent="HBoxContainer/GamePanel" unique_id=147263307 node_paths=PackedStringArray("button_group_order")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+current_tab = 0
+tabs_visible = false
+script = ExtResource("6_pm0ce")
+button_group_order = [NodePath("../ScrollContainer/PanelContainer/BoxContainer/AspectRatioContainer/Point"), NodePath("../../ScorePanel/BoxContainer/MarginContainer/Skill")]
+button_group = ExtResource("2_8mugl")
+
+[node name="Point" parent="HBoxContainer/GamePanel/TabContainer" unique_id=1963529913 instance=ExtResource("1_euqtm")]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Skill" parent="HBoxContainer/GamePanel/TabContainer" unique_id=1802126072 node_paths=PackedStringArray("point_node") instance=ExtResource("2_nem1b")]
+visible = false
+layout_mode = 2
+point_node = NodePath("../Point")
+metadata/_tab_index = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/GamePanel" unique_id=276010746]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 0
+offset_right = 959.0
+offset_bottom = 128.0
+horizontal_scroll_mode = 4
+vertical_scroll_mode = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/GamePanel/ScrollContainer" unique_id=1095937508]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BoxContainer" type="BoxContainer" parent="HBoxContainer/GamePanel/ScrollContainer/PanelContainer" unique_id=1830885590]
+layout_mode = 2
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="HBoxContainer/GamePanel/ScrollContainer/PanelContainer/BoxContainer" unique_id=1424703059]
+layout_mode = 2
+
+[node name="Point" type="TextureButton" parent="HBoxContainer/GamePanel/ScrollContainer/PanelContainer/BoxContainer/AspectRatioContainer" unique_id=1449983227]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("2_8mugl")
+texture_normal = ExtResource("1_nuisn")
+texture_pressed = ExtResource("1_nuisn")
+texture_hover = ExtResource("1_nuisn")
+stretch_mode = 3
+
+[node name="Q" type="TextureButton" parent="HBoxContainer/GamePanel/ScrollContainer/PanelContainer/BoxContainer" unique_id=267139553]
+layout_mode = 2
+texture_normal = ExtResource("6_mdgj4")
+
+[node name="ScorePanel" type="PanelContainer" parent="HBoxContainer" unique_id=1357174771]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+theme_override_styles/panel = ExtResource("7_42h34")
+
+[node name="BoxContainer" type="BoxContainer" parent="HBoxContainer/ScorePanel" unique_id=1552802146]
+layout_mode = 2
+theme_override_constants/separation = 0
+vertical = true
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/ScorePanel/BoxContainer" unique_id=1942449260]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+
+[node name="Skill" type="Button" parent="HBoxContainer/ScorePanel/BoxContainer/MarginContainer" unique_id=422523230]
+layout_mode = 2
+theme = ExtResource("8_8mugl")
+toggle_mode = true
+button_group = ExtResource("2_8mugl")
+text = "Skills"
+
+[node name="ScoreContainer" type="ScrollContainer" parent="HBoxContainer/ScorePanel/BoxContainer" unique_id=1454588445]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Score" type="RichTextLabel" parent="HBoxContainer/ScorePanel/BoxContainer/ScoreContainer" unique_id=517669949 node_paths=PackedStringArray("points_node", "skills_node")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/outline_size = 2
+script = ExtResource("3_nem1b")
+points_node = NodePath("../../../../GamePanel/TabContainer/Point")
+skills_node = NodePath("../../../../GamePanel/TabContainer/Skill")
+
+[connection signal="pressed" from="HBoxContainer/GamePanel/ScrollContainer/PanelContainer/BoxContainer/AspectRatioContainer/Point" to="HBoxContainer/GamePanel/TabContainer" method="_on_button_group_pressed_changed"]
+[connection signal="pressed" from="HBoxContainer/ScorePanel/BoxContainer/MarginContainer/Skill" to="HBoxContainer/GamePanel/TabContainer" method="_on_button_group_pressed_changed"]
